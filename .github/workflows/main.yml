@@ -30,8 +30,11 @@ jobs:
       - name: Run Playwright Tests
         run: npx playwright test --reporter=html
 
+      - name: List report directory
+        run: ls -R playwright-report  # List all files recursively in the report directory
+
       - name: Upload Playwright HTML Report
-        if: failure()  # Upload the report only when a failure occurs
+        if: always()  # Upload the report regardless of test outcomes
         uses: actions/upload-artifact@v3
         with:
           name: playwright-report
