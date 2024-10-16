@@ -9,7 +9,7 @@ module.exports = defineConfig({
     { name: 'webkit', use: { browserName: 'webkit' } },
   ],
   use: {
-    headless: false,  // Change this to true if you want to run tests in headless mode
+    headless: true,  // Change this to true if you want to run tests in headless mode
     screenshot: 'only-on-failure',
   },
 });
