@@ -1,0 +1,19 @@
+{
+  "name": "playwright-example",
+  "version": "1.0.0",
+  "description": "A sample Playwright project",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.1",
+    "playwright": "^1.35.0"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": []
+}
