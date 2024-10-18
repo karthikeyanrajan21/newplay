@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright and Java Tests
 
 on:
   push:
@@ -16,11 +16,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3  # Ensure you are using the latest v3
 
+      # Step 1: Set up Java
+      - name: Set up Java
+        uses: actions/setup-java@v3  # Ensure you're using the latest v3
+        with:
+          distribution: 'temurin'  # Use Eclipse Temurin distribution (formerly AdoptOpenJDK)
+          java-version: '17'  # Specify the Java version (e.g., 17 for modern LTS)
+
+      - name: Verify Java version
+        run: java -version  # Optional: Check installed Java version
+
+      # Step 2: Set up Node.js after Java
       - name: Set up Node.js
         uses: actions/setup-node@v3  # Ensure you are using the latest v3
         with:
           node-version: '20.x'  # Specify Node.js version 20.x
 
+      # Step 3: Install project dependencies and run Playwright tests
       - name: Install dependencies
         run: npm install
 
@@ -30,6 +42,7 @@ jobs:
       - name: Run Playwright Tests
         run: npx playwright test --reporter=html
 
+      # Step 4: List and upload the test report
       - name: List report directory
         run: ls -R playwright-report  # List all files recursively in the report directory
 
@@ -38,4 +51,4 @@ jobs:
         uses: actions/upload-artifact@v4  # Updated to v4
         with:
           name: playwright-report
-          path: playwright-report  # Folder where Playwright stores the HTML report 
+          path: playwright-report  # Folder where Playwright stores the HTML report
